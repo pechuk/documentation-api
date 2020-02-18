@@ -101,6 +101,54 @@ Example Response:
 }
 ```
 
+Example Request for a USER with custom permissions:
+
+```
+curl -H "Content-Type: application/vnd.api+json" \
+-H "Authorization: ApiKey S1YnrbQuWagQS0MvbSchNHDO73XHqdAqH52RxEPGAggOYiXTxrwPfmiTNqQkTq3p" \
+https://us-west-2-api.cloudconformity.com/v1/users/whoami
+```
+Example Response:
+```
+{
+    "data": {
+        "type": "users",
+        "id": "517uNyIvG",
+        "attributes": {
+            "first-name": "Scott",
+            "last-name": "Tiger",
+            "role": "USER",
+            "email": "******@cloudconformity.com",
+            "status": "ACTIVE",
+            "mfa": false,
+            "last-login-date": 1503586843842,
+            "created-date": 1485834564224
+        },
+        "relationships": {
+            "organisation": {
+                "data": {
+                    "type": "organisations",
+                    "id": "A9NDYY12z"
+                }
+            },
+            "accountAccessList": [
+                {
+                    "account": "acc1abc",
+                    "level": "FULL"
+                },
+                {
+                    "account": "acc2abc",
+                    "level": "READONLY"
+                },
+                {
+                    "account": "acc3abc",
+                    "level": "FULL"
+                }
+        }
+    }
+}
+```
+
 
 
 ## Get User Details
@@ -148,6 +196,66 @@ Example Response:
                     "id": "A9NDYY12z"
                 }
             }
+        }
+    }
+}
+```
+
+Example request when an ADMIN queries a USER with custom permissions:
+
+```
+curl -H "Content-Type: application/vnd.api+json" \
+-H "Authorization: ApiKey S1YnrbQuWagQS0MvbSchNHDO73XHqdAqH52RxEPGAggOYiXTxrwPfmiTNqQkTq3p" \
+https://us-west-2-api.cloudconformity.com/v1/users/517uNyIvG
+```
+Example Response:
+```
+{
+    "data": {
+        "type": "users",
+        "id": "517uNyIvG",
+        "attributes": {
+            "first-name": "Scott",
+            "last-name": "Tiger",
+            "role": "USER",
+            "email": "******@cloudconformity.com",
+            "status": "ACTIVE",
+            "mfa": false,
+            "last-login-date": 1503586843842,
+            "created-date": 1485834564224
+        },
+        "relationships": {
+            "organisation": {
+                "data": {
+                    "type": "organisations",
+                    "id": "A9NDYY12z"
+                }
+            },
+            "accountAccessList": [
+                {
+                    "account": "account1",
+                    "level": "FULL"
+                },
+                {
+                    "account": "account2",
+                    "level": "READONLY"
+                },
+                {
+                    "account": "account3",
+                    "level": "FULL"
+                },
+                {
+                    "account": "account4",
+                    "level": "NONE"
+                },
+                {
+                    "account": "account5",
+                    "level": "NONE"
+                },
+                {
+                    "account": "account6",
+                    "level": "NONE"
+                }
         }
     }
 }
@@ -227,22 +335,22 @@ curl -H "Content-Type: application/vnd.api+json" \
 -d '
 {
     "data": {
-		role: "USER",
-        accessList: [
+        "role": "USER",
+        "accessList": [
             {
-                account: "ad03IHuI_",
-                level: "FULL"
+                "account": "ad03IHuI_",
+                "level": "FULL"
             },
             {
-                account: "Oa1j-gGTX",
-                level: "READONLY"
+                "account": "Oa1j-gGTX",
+                "level": "READONLY"
             },
             {
-                account: "Pa_dgRTA",
-                level: "NONE"
+                "account": "Pa_dgRTA",
+                "level": "NONE"
             }
         ]
-	}
+    }
 }
 ' \
 https://us-west-2-api.cloudconformity.com/v1/users/CClqMqknVb \
@@ -256,11 +364,11 @@ curl -H "Content-Type: application/vnd.api+json" \
 -d '
 {
     "data": {
-        role: "USER",
-        accessList: [
+        "role": "USER",
+        "accessList": [
             {
-                account: "ad03IHuI_",
-                level: "READONLY"
+                "account": "ad03IHuI_",
+                "level": "READONLY"
             }
         ]
     }
