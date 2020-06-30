@@ -601,7 +601,7 @@ https://us-west-2-api.cloudconformity.com/v1/checks?accountIds=r1gyR4cqg&page[si
 ```
 Example Response:
 ###### Note the size of this response can be quite large and the example below is purposefully truncated
-
+###### Currently, "uuid" is only available on checks generated for some AWS rules. This property represents [AWS ARN](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) of the related resource, provided by AWS API
 ```
 {
     "data": [
